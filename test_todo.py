@@ -105,7 +105,7 @@ def test_retrieve_task_by_id_must_returns_json():
 
         data = json.loads(response.data.decode('utf-8'))
         inserted_id = data['_id']['$oid']
-        response = client.get('/tasks/%s' % inserted_id)
+        response = client.get(f'/tasks/{inserted_id}')
         assert response.content_type == 'application/json'
 
 
@@ -125,6 +125,6 @@ def test_retrieve_task_with_pk_must_returns_task():
 
         data = json.loads(response.data.decode('utf-8'))
         inserted_id = data['_id']['$oid']
-        response = client.get('/tasks/%s' % inserted_id)
+        response = client.get(f'/tasks/{inserted_id}')
         data = json.loads(response.data.decode('utf-8'))
         assert data['_id']['$oid'] == inserted_id
